@@ -1,6 +1,7 @@
-# Template LaTeX Chuẩn QĐ 1799 — Đại học Cần Thơ (XeLaTeX)
+# Báo cao môn Công Nghệ Số Nâng Cao Viết Bằng LaTeX
 
-Mẫu trình bày báo cáo khoa học / luận văn thạc sĩ dựa trên định dạng đã hiệu chỉnh chuẩn **Quyết định số 1799/QĐ-ĐHCT** và biên dịch bằng **XeLaTeX** để sử dụng trực tiếp font hệ thống **Times New Roman** (khớp 1:1 kích thước `bp` với Microsoft Word).
+Chuẩn QĐ 1799 — Đại học Cần Thơ (XeLaTeX)
+(Sử dụng mẫu trình bày báo cáo khoa học / luận văn thạc sĩ dựa trên định dạng đã hiệu chỉnh chuẩn **Quyết định số 1799/QĐ-ĐHCT** và biên dịch bằng **XeLaTeX** để sử dụng trực tiếp font hệ thống **Times New Roman** (khớp 1:1 kích thước `bp` với Microsoft Word).)
 
 ---
 
