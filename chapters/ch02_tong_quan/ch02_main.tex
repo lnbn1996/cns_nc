@@ -1,0 +1,22 @@
+% ==============================================================================
+% CHƯƠNG 2: TỔNG QUAN TÀI LIỆU
+% ==============================================================================
+
+\chapter{Tổng quan tài liệu}\label{ch:tong_quan}
+
+\startcontents[chapters]
+\printmyminitoc{
+Chương này trình bày cơ sở lý thuyết nền tảng, mô hình toán học liên quan và tổng hợp các công trình nghiên cứu trước đây \cite{sample_book2022}.
+}
+
+\section{Cơ sở lý thuyết và Công thức toán học}\label{sec:ch02_co_so}
+
+Các công thức toán học trong bài viết được đánh số tự động theo chương bằng môi trường \texttt{equation}. Ví dụ hàm mục tiêu chuẩn hóa:
+\begin{equation}\label{eq:sample_loss}
+  \mathcal{L}(\theta) = \frac{1}{N} \sum_{i=1}^{N} \left( y_i - f(x_i; \theta) \right)^2
+\end{equation}
+trong đó $N$ là số lượng mẫu dữ liệu, $y_i$ là giá trị thực tế và $f(x_i; \theta)$ là giá trị dự báo từ mô hình tại tham số $\theta$.
+
+\section{Tổng hợp các công trình liên quan}\label{sec:ch02_lien_quan}
+
+So sánh, phân tích ưu điểm và hạn chế của các nghiên cứu trước đây \cite{sample_article2024, sample_book2022} nhằm chỉ ra khoảng trống nghiên cứu mà đề tài sẽ tập trung giải quyết.

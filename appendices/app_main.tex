@@ -1,0 +1,22 @@
+% ==============================================================================
+% PHỤ LỤC (APPENDICES)
+% FILE CHỦ PHỤ LỤC: app_main.tex
+% ==============================================================================
+
+\clearpage
+\begin{appendices}
+  \singlespacing                                 % Dãn dòng Phụ lục = 1.0 theo Mục 1.2.3 QĐ 1799
+  \renewcommand{\thechapter}{\arabic{chapter}}   % Đánh số bằng chữ số (1, 2, 3) thay vì (A, B, C)
+  \renewcommand{\appendixname}{Phụ lục}
+  \pagenumbering{arabic}                         % Đánh số trang Phụ lục lại từ 1
+  \setcounter{page}{1}
+  % Tiêu đề Phụ lục chữ in thường, in đậm, cỡ 14bp, canh giữa theo Mục 1.3.3.2
+  \titleformat{\chapter}[display]
+    {\normalfont\fontsize{14bp}{17bp}\selectfont\bfseries\centering}
+    {Phụ lục\ \thechapter}
+    {0.5ex}
+    {\fontsize{14bp}{17bp}\selectfont\bfseries}
+    []
+  \input{appendices/app_sec01_bieu_mau.tex}
+  \input{appendices/app_sec02_minh_chung.tex}
+\end{appendices}

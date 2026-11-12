@@ -1,0 +1,231 @@
+% !TEX program = xelatex
+\RequirePackage{fix-cm}
+\documentclass[12pt,oneside]{book}
+
+% ==============================================================================
+% TEMPLATE BÁO CÁO KHOA HỌC / LUẬN VĂN ĐẠI HỌC CẦN THƠ (CHUẨN QĐ 1799 - XeLaTeX)
+% ==============================================================================
+
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{indentfirst}
+\usepackage{appendix}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage[main=english,vietnamese]{babel}
+\usepackage[a4paper,left=3.0cm,right=2.0cm,top=2.0cm,bottom=2.0cm,headheight=15pt,headsep=1.0cm,footskip=1.0cm]{geometry}
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{newtxmath}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{caption}
+
+% Ngăn chặn hoàn toàn việc chèn trang trắng rỗng giữa các chương
+\let\cleardoublepage\clearpage
+
+\DeclareCaptionFont{size12}{\fontsize{12bp}{14bp}\selectfont}
+% Tùy chỉnh định dạng của chú thích của Hình và Bảng
+\captionsetup[table]{
+  font={size12},
+  labelfont=normalfont,
+  textfont=normalfont,
+  labelsep=colon,
+  justification=raggedright,
+  singlelinecheck=false,
+  skip=6pt
+}
+\captionsetup[figure]{
+  font={size12},
+  labelfont=normalfont,
+  textfont=normalfont,
+  labelsep=colon,
+  justification=centering,
+  skip=6pt
+}
+
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{minitoc}
+\usepackage{tikz}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt}
+\setlist[itemize]{itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt}
+\setlist[enumerate,1]{labelindent=1.0cm}
+\setlist[itemize,1]{labelindent=1.0cm}
+\usepackage{epigraph}
+\usepackage{lscape}
+\usepackage{titletoc}
+\usepackage{booktabs}
+\usepackage{arydshln}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{calc}
+\usepackage{titlesec}
+
+% Cấu hình biblatex chuẩn numeric
+\usepackage[
+    backend=bibtex,
+    style=numeric,
+    backref=true,
+    backrefstyle=three,
+]{biblatex}
+
+\addbibresource{references.bib}
+
+\definecolor{linkColor}{HTML}{1B365D}
+\usepackage[hidelinks,colorlinks=true,citecolor=linkColor,linkcolor=black,urlcolor=blue]{hyperref}
+
+% Cấu hình cỡ chữ 13bp (tương đương 13pt Word với font Times New Roman từ fontspec)
+\makeatletter
+\DeclareRobustCommand\normalsize{%
+   \@setfontsize\normalsize{13bp}{15bp}%
+   \abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\let\@normalsize\normalsize
+\makeatother
+\AtBeginDocument{\normalsize}
+
+% Thiết lập phân cấp đề mục
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\titleformat{\section}[block]{\fontsize{13bp}{15bp}\selectfont\bfseries}{\hspace{1.0cm}\thesection}{0.5em}{}
+\titleformat{\subsection}[block]{\fontsize{13bp}{15bp}\selectfont\bfseries}{\hspace{1.0cm}\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}[block]{\fontsize{13bp}{15bp}\selectfont\bfseries}{\hspace{1.0cm}\thesubsubsection}{0.5em}{}
+
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{listings}
+
+% ==============================================================================
+% ĐỊNH DẠNG TIÊU ĐỀ CHƯƠNG VÀ MINITOC
+% ==============================================================================
+
+\definecolor{yourcolor}{HTML}{8a0e19}
+
+\titleformat{\chapter}[display]
+  {\normalfont\fontsize{14bp}{17bp}\selectfont\bfseries\centering}
+  {\MakeUppercase{\chaptertitlename}\ \thechapter}
+  {0.5ex}
+  {\fontsize{14bp}{17bp}\selectfont\bfseries\MakeUppercase}
+  []
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\fontsize{14bp}{17bp}\selectfont\bfseries\centering}
+  {}
+  {0ex}
+  {\fontsize{14bp}{17bp}\selectfont\bfseries\MakeUppercase}
+  []
+
+% Lệnh in đoạn tóm lược / mục lục nhỏ đầu chương
+\newcommand{\printmyminitoc}[1]{%
+	 #1\par\vspace*{1ex}
+}
+
+% ==============================================================================
+% ĐỒNG BỘ KHOẢNG CÁCH VÀ TÊN DANH SÁCH BẢNG / HÌNH / BẢNG BIỂU THEO QĐ 1799
+% ==============================================================================
+\usepackage{etoolbox}
+\AtBeginEnvironment{table}{\singlespacing}
+\AtBeginEnvironment{longtable}{\singlespacing}
+\makeatletter
+% Vô hiệu hóa khoảng trắng 10pt chèn tự động giữa các chương trong .lof và .lot
+\pretocmd{\@starttoc}{\begingroup\ifstrequal{#1}{lof}{\renewcommand{\addvspace}[1]{}}{}\ifstrequal{#1}{lot}{\renewcommand{\addvspace}[1]{}}{}}{}{}
+\apptocmd{\@starttoc}{\endgroup}{}{}
+\makeatother
+
+% Đổi tiêu đề "Danh sách hình vẽ" thành "Danh sách hình" (Mục 1.3.1.9 QĐ 1799)
+\addto\captionsvietnamese{%
+  \renewcommand{\listfigurename}{Danh sách hình}%
+  \renewcommand{\listtablename}{Danh sách bảng}%
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.7mm}}
+\newcommand{\Hrule}{\rule{\linewidth}{0.3mm}}
+
+% ==============================================================================
+% BẮT ĐẦU TÀI LIỆU CHÍNH
+% ==============================================================================
+
+\begin{document}
+\selectlanguage{vietnamese}
+
+% --- CỤM TIỀN TỐ 00_frontmatter: TRANG BÌA CHÍNH & BÌA PHỤ ---
+\input{00_frontmatter/front_01_bia.tex}
+\input{00_frontmatter/front_01b_bia_phu.tex}
+
+% Cấu hình header & footer cho định dạng oneside theo QĐ 1799
+\pagestyle{fancy}
+\fancyhf{} % Xóa sạch toàn bộ header và footer mặc định
+\renewcommand{\headrulewidth}{0pt} % QĐ 1799 không dùng đường kẻ trên đầu trang
+\fancyfoot[C]{\fontsize{13bp}{15bp}\selectfont\thepage} % Số trang ở GIỮA PHÍA DƯỚI, cỡ 13
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\fontsize{13bp}{15bp}\selectfont\thepage}
+}
+
+% --- CỤM TIỀN TỐ 00_frontmatter: THỦ TỤC TRƯỚC NỘI DUNG CHÍNH ---
+\frontmatter
+\normalsize
+\setstretch{1.2}                     % Dãn dòng chuẩn 1.2 theo Mục 1.2.3 QĐ 1799
+\setlength{\parskip}{6bp}            % Khoảng cách giữa các đoạn 6bp (before 6pt, after 0pt)
+\setlength{\parindent}{1.0cm}        % Thụt đầu dòng đoạn văn 1.0cm
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+
+% Bỏ dấu % ở các dòng dưới nếu cần dùng Trang xác nhận, Lời cảm ơn hoặc Lời cam đoan
+% \input{00_frontmatter/front_02_xacnhan.tex}          % 1. Trang xác nhận HĐ
+% \input{00_frontmatter/front_03_camon.tex}            % 2. Lời cảm ơn
+\input{00_frontmatter/front_04_tomtat_tiengviet.tex}   % 3. Tóm tắt tiếng Việt
+\input{00_frontmatter/front_05_abstract_tienganh.tex}   % 4. Tóm tắt tiếng Anh
+% \input{00_frontmatter/front_06_camdoan.tex}          % 5. Lời cam đoan kết quả
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Mục lục}
+\tableofcontents
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Danh sách Bảng}         % 7. Danh sách bảng (ĐẶT TRƯỚC HÌNH)
+\listoftables
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Danh sách Hình}         % 8. Danh sách hình (ĐẶT SAU BẢNG)
+\listoffigures
+
+\input{00_frontmatter/front_09_danhmuc_viettat.tex}    % 9. Danh mục từ viết tắt
+
+% --- PHẦN NỘI DUNG CHÍNH (MAINMATTER) ---
+\mainmatter
+\setstretch{1.2}
+
+\input{chapters/ch01_gioithieu/ch01_main.tex}          % Chương 1: Giới thiệu
+\input{chapters/ch02_tong_quan/ch02_main.tex}          % Chương 2: Tổng quan tài liệu
+\input{chapters/ch03_phuong_phap/ch03_main.tex}        % Chương 3: Phương pháp nghiên cứu
+\input{chapters/ch04_ket_qua/ch04_main.tex}            % Chương 4: Kết quả và thảo luận
+\input{chapters/ch05_ket_luan/ch05_main.tex}           % Chương 5: Kết luận và đề xuất
+
+% --- TÀI LIỆU THAM KHẢO ---
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
+\begin{singlespace}
+\printbibliography
+\end{singlespace}
+
+% --- CỤM TIỀN TỐ app_: PHỤ LỤC ---
+\input{appendices/app_main.tex}
+
+\end{document}

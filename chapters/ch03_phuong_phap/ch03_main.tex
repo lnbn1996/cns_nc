@@ -1,0 +1,43 @@
+% ==============================================================================
+% CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU
+% ==============================================================================
+
+\chapter{Phương pháp nghiên cứu}\label{ch:phuong_phap}
+
+\startcontents[chapters]
+\printmyminitoc{
+Chương này mô tả quy trình nghiên cứu, thiết kế thực nghiệm cùng cách trình bày hình vẽ và bảng số liệu theo chuẩn QĐ 1799.
+}
+
+\section{Quy trình triển khai nghiên cứu}\label{sec:ch03_quy_trinh}
+
+Hình vẽ và sơ đồ phải được đặt ngay sau đoạn mô tả (không đặt ngay sau tiêu đề mục), căn giữa và có chú thích cỡ 12bp ở phía dưới (ví dụ Hình \ref{fig:sample_pipeline}).
+
+\begin{figure}[ht!]
+  \centering
+  \begin{tikzpicture}[>=latex]
+    \node[draw, rectangle, rounded corners=3pt, fill=blue!8, minimum width=3.8cm, minimum height=0.9cm] (b1) at (0,0) {1. Thu thập dữ liệu};
+    \node[draw, rectangle, rounded corners=3pt, fill=green!10, minimum width=3.8cm, minimum height=0.9cm] (b2) at (4.8,0) {2. Xử lý và Mô hình hóa};
+    \node[draw, rectangle, rounded corners=3pt, fill=orange!12, minimum width=3.8cm, minimum height=0.9cm] (b3) at (9.6,0) {3. Đánh giá kết quả};
+    \draw[->] (b1) -- (b2);
+    \draw[->] (b2) -- (b3);
+  \end{tikzpicture}
+  \caption{Sơ đồ minh họa quy trình nghiên cứu tổng quát.}\label{fig:sample_pipeline}
+\end{figure}
+
+\section{Trình bày Bảng biểu theo quy chuẩn}\label{sec:ch03_bang}
+
+Theo Phụ lục 7 của QĐ 1799, bảng không kẻ đường dọc, chỉ kẻ ngang ở đầu bảng, dưới tiêu đề cột và cuối bảng bằng gói \texttt{booktabs}; tiêu đề bảng đặt phía trên canh trái, cỡ chữ 12bp và nội dung bảng tự động giãn dòng 1.0 (như Bảng \ref{tab:sample_data}).
+
+\begin{table}[ht!]
+  \centering
+  \caption{Bảng minh họa đặc tả tham số thực nghiệm chuẩn QĐ 1799.}\label{tab:sample_data}
+  \begin{tabular}{llr}
+    \toprule
+    \textbf{Thành phần} & \textbf{Mô tả cấu hình} & \textbf{Giá trị} \\ \midrule
+    Tập huấn luyện      & Tỷ lệ phân chia dữ liệu ban đầu & 70,0\% \\
+    Tập kiểm thử        & Đánh giá độc lập cuối quy trình & 30,0\% \\
+    Số vòng lặp tối đa  & Ngưỡng dừng hội tụ thuật toán & 100 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
